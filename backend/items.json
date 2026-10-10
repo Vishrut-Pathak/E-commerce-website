@@ -1,7 +1,6 @@
 {
   "items": [
-    [
-      {
+    {
         "id": "001",
         "image": "images/1.jpg",
         "company": "Carlton London",
@@ -103,6 +102,5 @@
         "rating": { "stars": 4.2, "count": 5200 },
         "category": "beauty"
       }
-    ]
   ]
 }

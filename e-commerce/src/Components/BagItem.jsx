@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { bagActions } from '../store/bagSlice';
 import { IoCloseOutline } from 'react-icons/io5';
 import { FiCheckCircle } from 'react-icons/fi';
+import { formatImageUrl, handleImageError } from '../utils/imageHelper';
 
 const BagItem = ({ item }) => {
   const dispatch = useDispatch();
@@ -11,17 +12,16 @@ const BagItem = ({ item }) => {
     dispatch(bagActions.removeFromBag(item.id));
   };
 
+  const imageSrc = formatImageUrl(item?.image, item?.category);
+
   return (
     <div className="bag-item-container">
       <div className="item-left-part">
         <img
           className="bag-item-img"
-          src={item.image.startsWith("http") ? item.image : `/${item.image}`}
-          alt={item.item_name}
-          onError={(e) => {
-            e.currentTarget.onerror = null;
-            e.currentTarget.src = "/images/1.jpg";
-          }}
+          src={imageSrc}
+          alt={item?.item_name || "Product"}
+          onError={(e) => handleImageError(e, item?.category, item?.item_name)}
         />
       </div>
       <div className="item-right-part">

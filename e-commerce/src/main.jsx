@@ -9,20 +9,23 @@ import { Provider } from "react-redux";
 import myntraStore from './store/index.js';
 import "bootstrap/dist/css/bootstrap.min.css";
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <App />,
-    children: [
-      { path: "/", element: <Home /> },
-      { path: "/category/:categorySlug", element: <Home /> },
-      {
-        path: "/bag",
-        element: <Bag />,
-      },
-    ],
-  },
-]);
+const router = createBrowserRouter(
+  [
+    {
+      path: "/",
+      element: <App />,
+      children: [
+        { path: "/", element: <Home /> },
+        { path: "/category/:categorySlug", element: <Home /> },
+        {
+          path: "/bag",
+          element: <Bag />,
+        },
+      ],
+    },
+  ],
+  { basename: import.meta.env.BASE_URL }
+);
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>

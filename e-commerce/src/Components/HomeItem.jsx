@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { bagActions } from '../store/bagSlice';
 import { IoIosAddCircleOutline } from "react-icons/io";
 import { MdDeleteOutline } from "react-icons/md";
+import { formatImageUrl, handleImageError } from '../utils/imageHelper';
 
 const HomeItem = ({ item }) => {
   const dispatch = useDispatch();
@@ -17,17 +18,16 @@ const HomeItem = ({ item }) => {
     dispatch(bagActions.removeFromBag(item.id));
   };
 
+  const imageSrc = formatImageUrl(item?.image, item?.category);
+
   return (
     <div className="item-container">
       <div className="item-image-wrapper">
         <img
           className="item-image"
-          src={item.image.startsWith("http") ? item.image : `/${item.image}`}
-          alt={item.item_name}
-          onError={(e) => {
-            e.currentTarget.onerror = null;
-            e.currentTarget.src = "/images/1.jpg";
-          }}
+          src={imageSrc}
+          alt={item?.item_name || "Product"}
+          onError={(e) => handleImageError(e, item?.category, item?.item_name)}
           loading="lazy"
         />
         <div className="rating">

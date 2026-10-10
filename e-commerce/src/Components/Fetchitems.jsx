@@ -25,11 +25,8 @@ const Fetchitems = () => {
         dispatch(fetchStatusActions.markFetchDone());
         dispatch(fetchStatusActions.markFetchingFinished());
 
-        const productList = Array.isArray(items[0])
-          ? items[0]
-          : Array.isArray(items)
-          ? items
-          : DEFAULT_ITEMS;
+        const rawItems = Array.isArray(items) ? items.flat(Infinity) : [];
+        const productList = rawItems.length > 0 ? rawItems : DEFAULT_ITEMS;
 
         dispatch(itemsActions.addInitialItems(productList));
       })

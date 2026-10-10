@@ -41,7 +41,7 @@ const Footer = () => {
       <hr className="footer-divider" />
 
       <div className="copyright">
-        © 2026 www.myntra.com clone. All rights reserved. Built with React & Redux.
+        © 2026 Buyit. All rights reserved. Built with React & Redux.
       </div>
     </footer>
   );
